@@ -2,23 +2,19 @@ package com.thiago.demobitzen.dto;
 
 import com.thiago.demobitzen.model.Album;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 public class AlbumDTO implements Serializable {
 
     private Integer id;
-    @NotBlank(message = "preenchimento do campo titulo e obrigatorio")
+    @NotEmpty(message = "titulo nao deve estar vazio")
     private String title;
-
-    @NotBlank(message = "preenchimento do campo ano e obrigatorio")
+    @NotEmpty(message = "ano nao deve estar vazio")
     private String year;
-
-    @NotBlank(message = "preenchimento do campo imagem e obrigatorio")
+    @NotEmpty(message = "imagem nao deve estar vazio")
     private String image;
-
-    @NotBlank(message = "preenchimento do campo artista e obrigatorio")
     private Integer artist;
 
     public AlbumDTO() {
