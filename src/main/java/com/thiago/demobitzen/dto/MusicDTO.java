@@ -1,8 +1,10 @@
 package com.thiago.demobitzen.dto;
 
 import com.thiago.demobitzen.model.Music;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -13,6 +15,8 @@ public class MusicDTO implements Serializable {
     private String title;
     @NotEmpty(message = "duracao nao deve estar vazio")
     private String duration;
+
+    @Min(value = 1, message = "numero da faixa deve ser maior que 0")
     @NotNull(message = "faixa nao deve estar vazio")
     private Integer track;
     @NotNull(message = "album nao deve estar vazio")
