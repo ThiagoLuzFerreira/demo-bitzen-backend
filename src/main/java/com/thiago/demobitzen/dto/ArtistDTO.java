@@ -1,13 +1,18 @@
 package com.thiago.demobitzen.dto;
 
 import com.thiago.demobitzen.model.Artist;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 
 public class ArtistDTO implements Serializable {
 
     private Integer id;
+
+    @NotEmpty(message = "nome nao deve estar vazio")
     private String name;
+
+    @NotEmpty(message = "imagem nao deve estar vazio")
     private String image;
 
     public ArtistDTO() {

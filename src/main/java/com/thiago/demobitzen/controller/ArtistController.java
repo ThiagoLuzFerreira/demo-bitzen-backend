@@ -3,6 +3,7 @@ package com.thiago.demobitzen.controller;
 import com.thiago.demobitzen.dto.ArtistDTO;
 import com.thiago.demobitzen.model.Artist;
 import com.thiago.demobitzen.service.ArtistService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,7 +40,7 @@ public class ArtistController {
     }
 
     @PostMapping
-    ResponseEntity<Artist> save(@RequestBody ArtistDTO artistDTO){
+    ResponseEntity<Artist> save(@RequestBody @Valid ArtistDTO artistDTO){
 
         Artist artistSaved = service.save(artistDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(artistDTO.getId()).toUri();
@@ -47,7 +48,7 @@ public class ArtistController {
     }
     
     @PutMapping
-    ResponseEntity<Artist> update(@RequestBody ArtistDTO artistDTO){
+    ResponseEntity<Artist> update(@RequestBody @Valid ArtistDTO artistDTO){
         return ResponseEntity.ok().body(service.update(artistDTO));
     }
 
