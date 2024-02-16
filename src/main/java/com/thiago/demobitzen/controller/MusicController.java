@@ -5,6 +5,7 @@ import com.thiago.demobitzen.model.Artist;
 import com.thiago.demobitzen.model.Music;
 import com.thiago.demobitzen.service.ArtistService;
 import com.thiago.demobitzen.service.MusicService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,7 +42,7 @@ public class MusicController {
     }
 
     @PostMapping
-    ResponseEntity<Music> save(@RequestBody MusicDTO musicDTO){
+    ResponseEntity<Music> save(@RequestBody @Valid MusicDTO musicDTO){
 
         Music musicSaved = service.save(musicDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(musicDTO.getId()).toUri();
@@ -49,7 +50,7 @@ public class MusicController {
     }
     
     @PutMapping
-    ResponseEntity<Music> update(@RequestBody MusicDTO musicDTO){
+    ResponseEntity<Music> update(@RequestBody @Valid MusicDTO musicDTO){
         return ResponseEntity.ok().body(service.update(musicDTO));
     }
 

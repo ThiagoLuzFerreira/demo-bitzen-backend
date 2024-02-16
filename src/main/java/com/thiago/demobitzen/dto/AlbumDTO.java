@@ -3,6 +3,7 @@ package com.thiago.demobitzen.dto;
 import com.thiago.demobitzen.model.Album;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ public class AlbumDTO implements Serializable {
     private String year;
     @NotEmpty(message = "imagem nao deve estar vazio")
     private String image;
+    @NotNull(message = "artista nao deve estar vazio")
     private Integer artist;
 
     public AlbumDTO() {
