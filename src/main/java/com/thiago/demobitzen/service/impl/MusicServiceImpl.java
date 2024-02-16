@@ -5,6 +5,7 @@ import com.thiago.demobitzen.exceptions.ResourceNotFoundException;
 import com.thiago.demobitzen.model.Album;
 import com.thiago.demobitzen.model.Music;
 import com.thiago.demobitzen.repository.AlbumRepository;
+import com.thiago.demobitzen.repository.ArtistRepository;
 import com.thiago.demobitzen.repository.MusicRepository;
 import com.thiago.demobitzen.service.MusicService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -23,6 +26,9 @@ public class MusicServiceImpl implements MusicService {
 
     @Autowired
     private AlbumRepository albumRepository;
+
+    @Autowired
+    ArtistRepository artistRepository;
 
 
     @Override
@@ -70,5 +76,13 @@ public class MusicServiceImpl implements MusicService {
     public void delete(Integer id) {
         log.info("Deleting music by ID " + id);
         repository.deleteById(id);
+    }
+
+    public List<Music> getAllSongsByArtist(Integer artistId) {
+        return artistRepository.findById(artistId)
+                .map(artist -> artist.getAlbums().stream()
+                        .flatMap(album -> album.getMusics().stream())
+                        .toList())
+                .orElseThrow(() -> new RuntimeException("Artist not found with ID: " + artistId));
     }
 }

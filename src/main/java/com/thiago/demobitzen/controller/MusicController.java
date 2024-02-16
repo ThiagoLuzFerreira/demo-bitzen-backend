@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/musics")
@@ -58,5 +59,10 @@ public class MusicController {
     ResponseEntity<Void> delete(@PathVariable(value = "id") Integer id){
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @GetMapping("/{artistId}/songs")
+    public List<Music> getSongsByArtist(@PathVariable Integer artistId) {
+        return service.getAllSongsByArtist(artistId);
     }
 }

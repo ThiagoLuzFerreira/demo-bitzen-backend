@@ -5,6 +5,8 @@ import com.thiago.demobitzen.model.Music;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface MusicService {
 
     Music findById(Integer id);
@@ -16,4 +18,6 @@ public interface MusicService {
     Music update(MusicDTO musicDTO);
 
     void delete(Integer id);
+
+    List<Music> getAllSongsByArtist(Integer artistId);
 }
