@@ -25,7 +25,7 @@ public class Album implements Serializable {
     @JoinColumn(name = "artist_id")
     @JsonIgnore
     private Artist artist;
-    @OneToMany(mappedBy = "album")
+    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Music> musics = new ArrayList<>();
 }
