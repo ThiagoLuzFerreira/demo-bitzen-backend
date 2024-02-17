@@ -19,3 +19,5 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+cors:
+  originPatterns: http://localhost:3000,http://localhost:8080

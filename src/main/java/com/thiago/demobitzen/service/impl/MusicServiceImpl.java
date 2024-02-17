@@ -78,6 +78,7 @@ public class MusicServiceImpl implements MusicService {
         repository.deleteById(id);
     }
 
+    @Override
     public List<Music> getAllSongsByArtist(Integer artistId) {
         return artistRepository.findById(artistId)
                 .map(artist -> artist.getAlbums().stream()
