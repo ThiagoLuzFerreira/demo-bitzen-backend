@@ -9,3 +9,5 @@ setei os valores como:
     username: "postgres"
     
     password: "example"
+
+link para o swagger: http://localhost:8080/swagger-ui/index.html
